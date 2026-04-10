@@ -1,0 +1,81 @@
+{
+  "name": "first-italian-pizza",
+  "version": "1.0.0",
+  "description": "First Italian Pizza - POS Desktop App",
+  "main": "main.js",
+  "author": "First Italian Pizza",
+  "scripts": {
+    "start":   "electron .",
+    "build":        "electron-builder --win --x64",
+    "build:portable":"electron-builder --win portable --x64",
+    "build:dir":    "electron-builder --win --x64 --dir"
+  },
+  "dependencies": {
+    "electron-updater": "^6.1.7",
+    "electron-log":     "^5.1.0"
+  },
+  "devDependencies": {
+    "electron":         "^28.1.0",
+    "electron-builder": "^24.9.1"
+  },
+  "build": {
+    "appId": "com.firstitalianpizza.pos",
+    "productName": "First Italian Pizza POS",
+    "copyright": "Copyright © 2024 First Italian Pizza",
+    "directories": {
+      "output": "../build"
+    },
+    "files": [
+      "main.js",
+      "preload.js"
+    ],
+    "extraResources": [
+      {
+        "from": "../backend",
+        "to":   "backend",
+        "filter": [
+          "src/**/*",
+          "prisma/schema.prisma",
+          "prisma/migrations/**/*",
+          "node_modules/**/*",
+          "!node_modules/prisma/build/**/*",
+          "!node_modules/@prisma/engines/**/*",
+          "!node_modules/nodemon/**/*"
+        ]
+      },
+      {
+        "from": "../frontend/dist",
+        "to":   "frontend"
+      },
+      {
+        "from": "../backend/prisma/pizza.db",
+        "to":   "template.db"
+      }
+    ],
+    "win": {
+      "target": [
+        { "target": "nsis",     "arch": ["x64"] },
+        { "target": "portable", "arch": ["x64"] }
+      ],
+      "icon": "assets/icon.ico",
+      "signingHashAlgorithms": null,
+      "sign": null
+    },
+    "nsis": {
+      "oneClick":           false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    },
+    "portable": {
+      "artifactName": "FirstItalianPizza-POS-Portable.exe"
+    },
+    "publish": [
+      {
+        "provider": "github",
+        "owner":    "ahsansaqib16",
+        "repo":     "first-italian-pizza"
+      }
+    ]
+  }
+}
