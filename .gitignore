@@ -1,9 +1,40 @@
+# Dependencies
 node_modules/
+**/node_modules/
+
+# Build output
 dist/
 build/
+**/dist/
+
+# Database files - NEVER commit these
 *.db
 *.db-journal
-uploads/
+*.db-wal
+*.db-shm
+backend/prisma/*.db
+
+# Environment variables - NEVER commit these
 .env
-frontend/dist/
-backend/prisma/migrations/
+.env.*
+!.env.example
+
+# Uploads
+uploads/
+**/uploads/
+
+# Logs
+*.log
+logs/
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor
+.vscode/
+.idea/
+
+# Prisma migrations (optional - comment out if you want to track migrations)
+# backend/prisma/migrations/

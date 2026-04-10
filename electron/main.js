@@ -51,7 +51,7 @@ function startBackend() {
 
   // ── 2. Set environment variables for the backend ───────────────────────────
   process.env.DATABASE_URL  = `file:${dbPath}`;
-  process.env.JWT_SECRET    = 'FirstItalianPizza_JWT_Secret_2024';
+  process.env.JWT_SECRET    = 'd2e8dc81a630bd03fefd1a47321580ebae095a1bb901b1c2596a371bbd31d90e462bbecc5443cdbb9ce50995780dd74c968bea0617e978c899f23379512c24c7';
   process.env.JWT_EXPIRES_IN = '7d';
   process.env.PORT          = String(BACKEND_PORT);
   process.env.NODE_ENV      = 'production';
